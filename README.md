@@ -111,4 +111,31 @@
     } else {
     '기존 배너'
     }
-    ````
+    ```
+
+<br/>
+<br/>
+
+## 3일차
+
+  - Row 컴포넌트 완성
+
+    1. api폴더에 만들어놓은 request.js를 활용하여 카테고리별로 나타나게끔 만들었습니다
+    ```jsx
+    <Row title="Trending Now" id="TN" fetchUrl={requests.fetchTrending} />
+    <Row title="Top Rated" id="TR" fetchUrl={requests.fetchTopRated} />
+    <Row title="Action Movies" id="AM" fetchUrl={requests.fetchActionMovies} />
+    <Row title="Comedy Movies" id="CM" fetchUrl={requests.fetchComedyMovies} />
+    ```
+
+    2. arrow 버튼을 클릭시 slide 기능이 되도록 구현하였습니다.
+    ```jsx
+    <span className='arrow'
+      onClick={() => {
+        document.getElementById(id).scrollLeft += window.innerWidth - 80
+      }}>
+    {'>'}</span>
+    ```
+    - category 컴포넌트 완성
+    1. 제공받은 동영상과 사진으로 카테고리를 만들었습니다.
+    2. 카테고리를 hover시 브랜드별로 영상이 재생되게끔 만들었습니다.
