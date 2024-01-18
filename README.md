@@ -82,9 +82,7 @@
     ```
 
     ```jsx
-    <p className='bannerDescription'>
-      {truncate(movie?.overview, 100)}
-    </p>
+    <p className="bannerDescription">{truncate(movie?.overview, 100)}</p>
     ```
 
     3. 영상정보가 있는 영화는 iframe기능을 사용하여 예고편식의 영상을 확인할수 있게 만들었습니다.
@@ -109,7 +107,7 @@
         </>
       );
     } else {
-    '기존 배너'
+      ("기존 배너");
     }
     ```
 
@@ -118,24 +116,59 @@
 
 ## 3일차
 
-  - Row 컴포넌트 완성
+- Row 컴포넌트 완성
 
-    1. api폴더에 만들어놓은 request.js를 활용하여 카테고리별로 나타나게끔 만들었습니다
-    ```jsx
-    <Row title="Trending Now" id="TN" fetchUrl={requests.fetchTrending} />
-    <Row title="Top Rated" id="TR" fetchUrl={requests.fetchTopRated} />
-    <Row title="Action Movies" id="AM" fetchUrl={requests.fetchActionMovies} />
-    <Row title="Comedy Movies" id="CM" fetchUrl={requests.fetchComedyMovies} />
-    ```
+  1. api폴더에 만들어놓은 request.js를 활용하여 카테고리별로 나타나게끔 만들었습니다
 
-    2. arrow 버튼을 클릭시 slide 기능이 되도록 구현하였습니다.
-    ```jsx
-    <span className='arrow'
-      onClick={() => {
-        document.getElementById(id).scrollLeft += window.innerWidth - 80
-      }}>
-    {'>'}</span>
-    ```
-    - category 컴포넌트 완성
-    1. 제공받은 동영상과 사진으로 카테고리를 만들었습니다.
-    2. 카테고리를 hover시 브랜드별로 영상이 재생되게끔 만들었습니다.
+  ```jsx
+  <Row title="Trending Now" id="TN" fetchUrl={requests.fetchTrending} />
+  <Row title="Top Rated" id="TR" fetchUrl={requests.fetchTopRated} />
+  <Row title="Action Movies" id="AM" fetchUrl={requests.fetchActionMovies} />
+  <Row title="Comedy Movies" id="CM" fetchUrl={requests.fetchComedyMovies} />
+  ```
+
+  2. arrow 버튼을 클릭시 slide 기능이 되도록 구현하였습니다.
+
+  ```jsx
+  <span
+    className="arrow"
+    onClick={() => {
+      document.getElementById(id).scrollLeft += window.innerWidth - 80;
+    }}
+  >
+    {">"}
+  </span>
+  ```
+
+  - category 컴포넌트 완성
+
+  1. 제공받은 동영상과 사진으로 카테고리를 만들었습니다.
+  2. 카테고리를 hover시 브랜드별로 영상이 재생되게끔 만들었습니다.
+
+<br/>
+<br/>
+
+## 4일차
+- React Router Dom
+  - React Router Dom을 사용하면 웹 앱에서 동적 라우팅을 구현할수 있다. 라우팅이 실행 중인 앱 외부의 구성에서 처리되는 기존 라우팅 아키텍처와 달리 React Router Dom은 앱 및 플랫폼의 요구 사항에 따라 컴포넌트 기반 라우팅을 용이하게 한다.
+  - 설치 방법 : `npm i react-router-dom --save`
+
+- Single Page Application(SPA)
+  - 리액트는 SPA이기 때문에 하나의 index.html 템플릿 파일을 가지고 있습니다. 하나의 템플릿에 js를 이용해서 다른 컴포넌트를 이 index.html 템플릿에 넣으므로 페이지를 변경해주게 된다. 이때 이 React Router Dom 라이브러리가 새 컴포넌트로 라우팅 및 탐색을 하고 렌더링 하는데 도움을 주게 된다.
+
+- Modal 컴포넌트 완성 
+  1. props를 활용하여 영화에 대한 상세페이지를 modal창으로 나타나게 만들었습니다.
+  ```jsx
+  const MovieModal = ({
+    backdrop_path,
+    title,
+    overview,
+    name,
+    release_date,
+    first_air_date,
+    vote_average,
+    setModalOpen
+  }) => {}
+  ```
+  2. React Router Dom을 사용하여 라우팅을 위한 파일을 변경하였습니다
+  <img src="https://github.com/LKJ970524/DisneyPlus-clone/assets/115642699/559b2e22-2528-48af-acd2-c60248c2cd40" width=170 />
