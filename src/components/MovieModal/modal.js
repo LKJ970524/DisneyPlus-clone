@@ -19,7 +19,8 @@ const MovieModal = ({
             onClick={() => setModalOpen(false)}
             className='modalClose'
           >X</span>
-          <img 
+          <img
+            loading='lazy'
             className='modal__posterImg'
             src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
             alt='modalImg' 

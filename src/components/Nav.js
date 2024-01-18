@@ -20,7 +20,7 @@ const Nav = () => {
   return (
     <NavWrapper show={show}>
       <Logo>
-        <img
+        <img loading='lazy'
          alt='Disney Plus Logo'
          src='/images/logo.svg'
          onClick={() => (window.location.href = '/')}

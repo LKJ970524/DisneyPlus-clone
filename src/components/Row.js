@@ -39,6 +39,7 @@ const Row = ({title, id, fetchUrl}) => {
         <div id={id} className='row__posters'>
           {movies.map((movie) => (
             <img
+              loading='lazy'
               key={movie.id}
               className='row__poster'
               src= {`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
