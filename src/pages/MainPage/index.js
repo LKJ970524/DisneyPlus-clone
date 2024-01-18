@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import './App.css';
-import Nav from './components/Nav';
-import Banner from './components/Banner';
-import Category from './components/Category';
-import Row from './components/Row'
-import requests from './api/request';
+import Banner from '../../components/Banner';
+import Nav from '../../components/Nav';
+import Category from '../../components/Category'
+import Row from '../../components/Row'
+import requests from '../../api/request';
 
-function App() {
+
+function MainPage() {
   return (
     <Container>
       <Nav />
@@ -20,7 +20,7 @@ function App() {
   );
 }
 
-export default App;
+export default MainPage;
 
 
 const Container = styled.main`
