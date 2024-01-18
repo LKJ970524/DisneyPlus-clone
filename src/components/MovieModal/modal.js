@@ -11,7 +11,6 @@ const MovieModal = ({
   vote_average,
   setModalOpen
 }) => {
-  setModalOpen(false)
   return (
     <div className='presentation' role='presentation'>
       <div className='wrapperModal'>
