@@ -158,7 +158,7 @@
 
 - Modal 컴포넌트 완성 
   1. props를 활용하여 영화에 대한 상세페이지를 modal창으로 나타나게 만들었습니다.
-  - 모달창을 제외한 어느곳을 눌러도 모달창이 닫히게 설정하였습니다.
+    - 모달창을 제외한 어느곳을 눌러도 모달창이 닫히게 설정하였습니다.
   ```jsx
   const MovieModal = ({
     backdrop_path,
@@ -186,9 +186,11 @@
 - searchPage 
   1. URLSearchParams를 활용하여 검색페이지 데이터를 불러오는데 성공하였습니다.
   <img src='https://github.com/LKJ970524/DisneyPlus-clone/assets/115642699/e33d3a9d-bef9-4b47-8348-02a745292bba' width=600 />
+
   2. 검색결과에 맞게 영화가 표시되도록 css를 적용 시켰고 결과가 없을시 결과가 없다는 내용이 나타나게 적용시켰습니다.
   <img src='https://github.com/LKJ970524/DisneyPlus-clone/assets/115642699/79736dcb-0d89-4f3d-a3d6-cad436cd86d8' width=450 />
   <img src='https://github.com/LKJ970524/DisneyPlus-clone/assets/115642699/f4f0fc49-a8a9-4021-bad8-c898ecf8e334' width=450 />
+
   3. useDebounce hook을 만들어서 search페이지에 적용시켰습니다
   ```js
   import { useState, useEffect } from 'react'
