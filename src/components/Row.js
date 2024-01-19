@@ -27,14 +27,11 @@ const Row = ({title, id, fetchUrl}) => {
     <div>
       <h2>{title}</h2>
       <div className='slider'>
-        <div className='slider__arrowLeft'>
-          <span
-            className='arrow'
-            onClick={() => {
-              document.getElementById(id).scrollLeft -= window.innerWidth - 80
-            }}
-            >
-            {'<'}</span>
+        <div className='slider__arrowLeft' 
+          onClick={() => {
+            document.getElementById(id).scrollLeft -= window.innerWidth - 80
+          }}>
+          <span className='arrow'>{'<'}</span>
         </div>
         <div id={id} className='row__posters'>
           {movies.map((movie) => (
@@ -48,14 +45,11 @@ const Row = ({title, id, fetchUrl}) => {
             />
           ))}
         </div>
-        <div className='slider__arrowRight'>
-          <span 
-            className='arrow'
-            onClick={() => {
-              document.getElementById(id).scrollLeft += window.innerWidth - 80
-            }}
-            >
-            {'>'}</span>
+        <div className='slider__arrowRight'
+          onClick={() => {
+            document.getElementById(id).scrollLeft += window.innerWidth - 80
+          }}>
+          <span className='arrow'>{'>'}</span>
         </div>
       </div>
 
