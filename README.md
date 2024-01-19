@@ -158,6 +158,7 @@
 
 - Modal 컴포넌트 완성 
   1. props를 활용하여 영화에 대한 상세페이지를 modal창으로 나타나게 만들었습니다.
+  - 모달창을 제외한 어느곳을 눌러도 모달창이 닫히게 설정하였습니다.
   ```jsx
   const MovieModal = ({
     backdrop_path,
