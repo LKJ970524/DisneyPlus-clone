@@ -12,7 +12,7 @@ const MovieModal = ({
   setModalOpen
 }) => {
   return (
-    <div className='presentation' role='presentation'>
+    <div className='presentation' role='presentation' onClick={() => setModalOpen(false)}>
       <div className='wrapperModal'>
         <div className='modal'>
           <span
