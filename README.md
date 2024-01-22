@@ -240,3 +240,5 @@
     }, [ref, handler])
   }
   ```
+- swiper 모듈을 이용한 터치 슬라이드 구현
+  - 설치 방법 : `npm i swiper`
