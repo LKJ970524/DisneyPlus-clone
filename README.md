@@ -209,3 +209,34 @@
     return debounceValue
   }
   ```
+  
+<br />
+<br />
+
+## 6일차
+- useParams
+  - `useParams`는 URL에 포함되어있는 Key, Value 형식의 객체를 반환해주는 역할을 한다. Route 부분에서 Key를 지정해주고, 해당하는 Key에 적합한 Value를 넣어 URL을 변경시키면, useParams를 통해 Key, Value 객체를 반환받아 확인할 수 있다.
+
+- DetailPage
+  1. useParams를 사용해 이미지를 불러왔고 상세페이지에 나타나도록 했습니다 (이미지만 불러오고 다른작업은 추후 천천히 완성할 예정입니다.)
+
+- Modal창 외부 클릭시 닫기 기능
+  1. custom Hooks를 만들어 기능을 완성하였습니다.
+  ```js
+  export default function useOnClickOutside(ref, handler) {
+    useEffect(() => {
+      const listener = (event) => {
+        if(!ref.current || ref.current.contains(event.target)) {
+          return
+        }
+        handler()
+      }
+      document.addEventListener("mousedown", listener)
+      document.addEventListener("touchstart", listener)
+      return () => {
+        document.removeEventListener("mousedown", listener)
+        document.removeEventListener("touchstart", listener)
+      }
+    }, [ref, handler])
+  }
+  ```
