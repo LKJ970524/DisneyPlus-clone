@@ -289,3 +289,11 @@
       })
     }, [auth, navigate, pathname])
     ```
+
+### 트러블 슈팅
+- <img src='https://github.com/LKJ970524/DisneyPlus-clone/assets/115642699/e1ad0907-8bb1-4e98-b1c7-2aa7de5055ad' width=460/>
+해당 error를 발견하였고 문제는 간단하게 해결하였습니다.
+코드에서 'show'라는 속성을 사용하고 있는데, 이는 boolean형 값입니다. HTML에서는 boolean형의 속성을 인식하지 않기 때문에 이러한 error가 나타났던 것이었습니다.
+이 error는 NavWrapper 컴포넌트에서 발생하였고, 'show'라는 prop을 받아서 스타일링에 사용하고 있는 것이었습니다.
+#### 수정방법 : `<NavWrapper show={show}>` => `<NavWrapper show={show ? "true" : undefined}>`
+'show'가 스타일링에 필요한 boolean 값이기 떄문에, 이를 문자열로 변환하거나 undefined를 전달하는 방식으로 해결하였고 error는 사라졌습니다.
