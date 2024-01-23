@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -11,7 +11,13 @@ const Nav = () => {
   const auth = getAuth()
   const provider = new GoogleAuthProvider()
 
-
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if(user) {
+        navigate('/main')
+      }
+    })
+  }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -38,7 +44,7 @@ const Nav = () => {
   const handleAuth = () => {
     signInWithPopup(auth, provider)
     .then(result => {
-      
+
     })
     .catch(error => {
       console.log(error);
@@ -46,7 +52,7 @@ const Nav = () => {
   }
 
   return (
-    <NavWrapper show={show}>
+    <NavWrapper show={show ? "true" : undefined}>
       <Logo>
         <img loading='lazy'
          alt='Disney Plus Logo'
