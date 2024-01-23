@@ -242,3 +242,50 @@
   ```
 - swiper 모듈을 이용한 터치 슬라이드 구현
   - 설치 방법 : `npm i swiper`
+
+<br />
+<br />
+
+## 7일차
+- FireBase를 사용하여 베포 와 로그인, 인증을 진행할 예정입니다.
+  - 설치방법 : `npm i firebase --save`
+
+- loginPage
+  1. loginPage 마크업 및 스타일링
+  2. login 버튼을 클릭시 handle Auth 함수를 호출하게 했습니다 (firebase의 google 로그인을 사용)
+  ```js
+  import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+
+  const Nav = () => {
+    const auth = getAuth()
+    const provider = new GoogleAuthProvider()
+    const handleAuth = () => {
+      signInWithPopup(auth, provider)
+      .then(result => {
+      
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    }
+    return (
+      <Login onClick={handleAuth}>Login</Login>
+    )
+  }
+
+  ```
+  3. Firebase를 이용한 인증 체크
+    - Firebase를 통해 로그인 및 비로그인 상태를 인증하는 기능을 적용시켰습니다.
+    ```js
+    useEffect(() => {
+      onAuthStateChanged(auth, (user) => {
+        if(user) {
+          if(pathname === '/') {
+            navigate('/main')
+          }
+        } else {
+          navigate('/')
+        }
+      })
+    }, [auth, navigate, pathname])
+    ```
