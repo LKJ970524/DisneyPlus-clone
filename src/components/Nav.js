@@ -14,10 +14,14 @@ const Nav = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if(user) {
-        navigate('/main')
+        if(pathname === '/') {
+          navigate('/main')
+        }
+      } else {
+        navigate('/')
       }
     })
-  }, [])
+  }, [auth, navigate, pathname])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
