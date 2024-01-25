@@ -5,7 +5,9 @@
 - 본 프로젝트는 저의 실력향상 및 기초부터 천천히 다시 배워보고자 시작하는 개인 프로젝트입니다.
 - (주의) 패스트캠퍼스 개인 강의를 통해 클론코딩을 할 예정이니 하나씩 천천히 배우고 올릴 예정이니 많이 늦을수 도있습니다. 퐈이팅!!
 - 개인 프로젝트이기 때문에 commit message와 pr, branch의 규칙을 따로 정하지 않았습니다. 참고 부탁드리겠습니다.
-- themovieDB를 사용하여 영화의 정보가 한정적이고 full 영상을 재생할 수 없어서 iframe 기능을 사용하여 영상을 불러왔습니다.
+- themovieDB를 사용하여 영화의 정보가 한정적이고 영화를 재생할 수 없어서 iframe 기능을 사용하여 예고편 영상을 불러왔습니다.
+- 베포 : Firebase
+
 
 ## 1일차
 
@@ -110,6 +112,9 @@
       ("기존 배너");
     }
     ```
+
+<!-- Top Button -->
+<p style='background: black; width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-left: auto;'><a href="#top" style='color: white; '>▲</a></p>
 
 <br/>
 <br/>
@@ -243,6 +248,9 @@
 - swiper 모듈을 이용한 터치 슬라이드 구현
   - 설치 방법 : `npm i swiper`
 
+<!-- Top Button -->
+<p style='background: black; width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-left: auto;'><a href="#top" style='color: white; '>▲</a></p>
+
 <br />
 <br />
 
@@ -354,3 +362,33 @@
   - 해당 error는 DropDown 스타일 컴포넌트를 선언한 코드의 위치가 문제였습니다.
   SignOut 스타일 컴포넌트 안에서 DropDown 스타일을 참조하고 있지만, 실제로 DropDown의 선언은 SignOut 이후에 이루어져 있었습니다. 이로 인해 DropDown 참조 시점에는 DropDown이 아직 정의되지 않았기 때문에 에러가 발생했던 것이었습니다.
 #### 수정방법 : DropDown 스타일 컴포넌트를 SignOut 선언 전에 위치시키는 것이 해결방법이었습니다.
+
+<br/>
+<br/>
+
+
+## 느낀점
+
+기초부터 다시한번 천천히 앞으로 나아가며 놓친부분을 공부할 수 있었고 앞으로도 계속 부족한 부분을 채워 나가도록 노력할 것입니다.
+
+<br/>
+<br/>
+
+## 프로젝트 사용법
+
+- 패키지 설치
+
+```
+npm i 또는 npm install
+```
+
+- 클라이언트 실행
+
+```
+npm run start
+```
+
+<!-- Top Button -->
+<p style='background: black; width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-left: auto;'><a href="#top" style='color: white; '>▲</a></p>
+
+<br />
