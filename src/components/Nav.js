@@ -72,7 +72,7 @@ const Nav = () => {
         <img loading='lazy'
          alt='Disney Plus Logo'
          src='/images/logo.svg'
-         onClick={() => (window.location.href = '/')}
+         onClick={() => (window.location.href = '/main')}
         />
       </Logo>
 
