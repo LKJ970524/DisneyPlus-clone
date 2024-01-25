@@ -1,12 +1,13 @@
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Nav = () => {
   const [show, setShow] = useState(false)
-  const { pathname } = useLocation()
+  const [userData, setUserData] = useState({})
   const [searchValue, setSearchValue] = useState("")
+  const { pathname } = useLocation()
   const navigate = useNavigate()
   const auth = getAuth()
   const provider = new GoogleAuthProvider()
@@ -48,10 +49,20 @@ const Nav = () => {
   const handleAuth = () => {
     signInWithPopup(auth, provider)
     .then(result => {
-
+      console.log('result.user', result.user);
+      setUserData(result.user)
     })
     .catch(error => {
-      console.log(error);
+      alert(error.message)
+    })
+  }
+
+  const handleLogOut = () => {
+    signOut(auth).then(() => {
+      setUserData({})
+      navigate(`/`)
+    }).catch((error) => {
+      alert(error.message)
     })
   }
 
@@ -65,24 +76,68 @@ const Nav = () => {
         />
       </Logo>
 
-      {pathname === '/' ? (
-      <Login onClick={handleAuth}>Login</Login>
-      ) : (
-        <>
-          <Search 
-            value={searchValue}
-            onChange={handleChange}
-            className='nav__search'
-            type='text'
-            placeholder='영화를 검색해주세요.'
-          />
-        </>
-      )}
+      {pathname === '/' ? 
+      (<Login onClick={handleAuth}>Login</Login>) : 
+      <>
+        <Search 
+          value={searchValue}
+          onChange={handleChange}
+          className='nav__search'
+          type='text'
+          placeholder='영화를 검색해주세요.'
+        />
+
+        <SignOut>
+          <UserImg src={userData.photoURL} alt={userData.displayName} />
+          <DropDown>
+            <span onClick={handleLogOut}>Sign Out</span>
+          </DropDown>
+        </SignOut>
+      </>
+    }
     </NavWrapper>
   )
 }
 
 export default Nav
+
+const DropDown = styled.div`
+  position: absolute;
+  top: 48px;
+  right: 0px;
+  background: rgb(19, 19, 19);
+  border: 1px solid rgba(151, 151, 151, 0.34);
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
+  padding: 10px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  width: 100%;
+  opacity: 0;
+`
+
+const SignOut = styled.div`
+  position: relative;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    ${DropDown} {
+      opacity: 1;
+      transition-duration: 1s;
+    }
+  }
+`
+
+const UserImg = styled.img`
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+`
 
 const Login = styled.a`
   background-color: rgba(0, 0, 0, 0.6);
@@ -92,6 +147,7 @@ const Login = styled.a`
   border: 1px solid #f9f9f9;
   border-radius: 4px;
   transition: all 0.2s ease 0s;
+  cursor: pointer;
 
   &:hover {
     background-color: #f9f9f9;
