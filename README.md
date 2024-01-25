@@ -7,6 +7,7 @@
 - 개인 프로젝트이기 때문에 commit message와 pr, branch의 규칙을 따로 정하지 않았습니다. 참고 부탁드리겠습니다.
 - themovieDB를 사용하여 영화의 정보가 한정적이고 영화를 재생할 수 없어서 iframe 기능을 사용하여 예고편 영상을 불러왔습니다.
 - 베포 : Firebase
+- [베포 주소](https://react-disney-plus-7bba2.web.app) <= 클릭시 베포사이트로 넘어갑니다.
 
 
 ## 1일차
