@@ -19,7 +19,6 @@ const Row = ({title, id, fetchUrl}) => {
 
   const fetchMovieData = useCallback( async () => {
     const response = await axios.get(fetchUrl);
-    console.log('response', response);
     setMovies(response.data.results);
   }, [fetchUrl])
   

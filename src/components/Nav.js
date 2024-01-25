@@ -49,12 +49,10 @@ const Nav = () => {
   const handleAuth = () => {
     signInWithPopup(auth, provider)
     .then(result => {
-      console.log('result.user', result.user);
       setUserData(result.user)
       localStorage.setItem('userData', JSON.stringify(result.user))
     })
     .catch(error => {
-      console.log(error)
       alert(error.message)
     })
   }

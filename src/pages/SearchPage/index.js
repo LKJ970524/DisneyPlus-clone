@@ -27,7 +27,7 @@ const SearchPage = () => {
       const response = await axios.get(`/search/multi?include_adult=false&query=${searchTerm}`)
       setSearchResults(response.data.results)
     } catch (error) {
-      console.log('error', error);
+      alert(error.message)
     }
   }
 
