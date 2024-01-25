@@ -4,8 +4,10 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Nav = () => {
+  const initialUserData = localStorage.getItem('userData') ?
+    JSON.parse(localStorage.getItem('userData')) : {}
+  const [userData, setUserData] = useState(initialUserData)
   const [show, setShow] = useState(false)
-  const [userData, setUserData] = useState({})
   const [searchValue, setSearchValue] = useState("")
   const { pathname } = useLocation()
   const navigate = useNavigate()
@@ -31,8 +33,6 @@ const Nav = () => {
     }
   }, [])
 
-
-
   const handleScroll = () => {
     if (window.scrollY > 50) {
       setShow(true)
@@ -51,8 +51,10 @@ const Nav = () => {
     .then(result => {
       console.log('result.user', result.user);
       setUserData(result.user)
+      localStorage.setItem('userData', JSON.stringify(result.user))
     })
     .catch(error => {
+      console.log(error)
       alert(error.message)
     })
   }
