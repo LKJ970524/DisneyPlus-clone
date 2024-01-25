@@ -290,10 +290,67 @@
     }, [auth, navigate, pathname])
     ```
 
+<br />
+<br />
+
+## 8일차
+- localStorage는 웹 브라우저에서 제공하는 저장소의 일종입니다. 이를 사용하면 웹 페이지가 닫히거나 리로드되어도 데이터가 유지됩니다. 즉, 영구적인 데이터 저장을 가능하게 해줍니다.
+
+  1. SignOut 기능을 완성하였습니다.
+  ```js
+    const handleLogOut = () => {
+      signOut(auth).then(() => {
+        setUserData({})
+        navigate(`/`)
+      }).catch((error) => {
+        alert(error.message)
+      })
+    }
+
+    <SignOut>
+      <UserImg src={userData.photoURL} alt={userData.displayName} />
+      <DropDown>
+        <span onClick={handleLogOut}>Sign Out</span>
+      </DropDown>
+    </SignOut>
+  ```
+
+  2. localStorage에 userData 담기
+    - localStorage에 userData 값을 담아서 페이지를 refresh 해도 userData가 계속 남아 있을 수 있게 해주기
+    ```js
+    const initialUserData = localStorage.getItem('userData') ?
+      JSON.parse(localStorage.getItem('userData')) : {}
+    const [userData, setUserData] = useState(initialUserData)
+
+    const handleAuth = () => {
+      signInWithPopup(auth, provider)
+      .then(result => {
+        console.log('result.user', result.user);
+        setUserData(result.user)
+        localStorage.setItem('userData', JSON.stringify(result.user))
+      })
+      .catch(error => {
+        console.log(error)
+        alert(error.message)
+      })
+    }
+    ```
+
+<br/>
+<br/>
+
 ### 트러블 슈팅
-- <img src='https://github.com/LKJ970524/DisneyPlus-clone/assets/115642699/e1ad0907-8bb1-4e98-b1c7-2aa7de5055ad' width=460/>
-해당 error를 발견하였고 문제는 간단하게 해결하였습니다.
-코드에서 'show'라는 속성을 사용하고 있는데, 이는 boolean형 값입니다. HTML에서는 boolean형의 속성을 인식하지 않기 때문에 이러한 error가 나타났던 것이었습니다.
+ <img src='https://github.com/LKJ970524/DisneyPlus-clone/assets/115642699/e1ad0907-8bb1-4e98-b1c7-2aa7de5055ad' width=460/>
+
+- 해당 error를 발견하였고 문제는 간단하게 해결하였습니다.
+  - 코드에서 'show'라는 속성을 사용하고 있는데, 이는 boolean형 값입니다. HTML에서는 boolean형의 속성을 인식하지 않기 때문에 이러한 error가 나타났던 것이었습니다.
 이 error는 NavWrapper 컴포넌트에서 발생하였고, 'show'라는 prop을 받아서 스타일링에 사용하고 있는 것이었습니다.
 #### 수정방법 : `<NavWrapper show={show}>` => `<NavWrapper show={show ? "true" : undefined}>`
 'show'가 스타일링에 필요한 boolean 값이기 떄문에, 이를 문자열로 변환하거나 undefined를 전달하는 방식으로 해결하였고 error는 사라졌습니다.
+
+<img src='https://github.com/LKJ970524/DisneyPlus-clone/assets/115642699/81885b19-8706-4e3f-8b9c-a13dd824cb17' />
+
+- DropDown을 찾지 못한다는 에러를 발견하였습니다.
+  - 해당 error는 DropDown 스타일 컴포넌트를 선언한 코드의 위치가 문제였습니다.
+  SignOut 스타일 컴포넌트 안에서 DropDown 스타일을 참조하고 있지만, 실제로 DropDown의 선언은 SignOut 이후에 이루어져 있었습니다. 이로 인해 DropDown 참조 시점에는 DropDown이 아직 정의되지 않았기 때문에 에러가 발생했던 것이었습니다.
+#### 수정방법 : DropDown 스타일 컴포넌트를 SignOut 선언 전에 위치시키는 것이 해결방법이었습니다.
